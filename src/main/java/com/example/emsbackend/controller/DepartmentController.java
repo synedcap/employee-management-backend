@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @RestController
@@ -22,5 +24,21 @@ public class DepartmentController {
 
         DepartmentDto department = departmentService.createDepartment(departmentDto);
         return new ResponseEntity<>(department, HttpStatus.CREATED);
+    }
+
+    //get specific department from id
+    @GetMapping("{id}")
+    public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") Long departmentId) {
+
+        DepartmentDto departmentDto =  departmentService.getDepartmentById(departmentId);
+        return  ResponseEntity.ok(departmentDto);
+    }
+
+    //get all departments api
+    @GetMapping
+    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
+
+        List<DepartmentDto> departments =  departmentService.getAllDepartments();
+        return  ResponseEntity.ok(departments);
     }
 }
