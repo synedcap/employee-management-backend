@@ -41,4 +41,22 @@ public class DepartmentController {
         List<DepartmentDto> departments =  departmentService.getAllDepartments();
         return  ResponseEntity.ok(departments);
     }
+
+    //update department api
+    @PutMapping("{id}")
+    public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable("id") Long departmentId,
+                                                      @RequestBody  DepartmentDto updatedDepartment) {
+
+        DepartmentDto departmentDto =   departmentService.updateDepartment(departmentId,updatedDepartment);
+        return  ResponseEntity.ok(departmentDto);
+    }
+
+
+    //delete employee api
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteDepartment(@PathVariable("id") Long departmentId) {
+
+        departmentService.deleteDepartment(departmentId);
+        return  ResponseEntity.ok("Department deleted successfully!");
+    }
 }
